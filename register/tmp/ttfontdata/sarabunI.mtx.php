@@ -1,0 +1,37 @@
+<?php
+$name='CordiaNew-Italic';
+$type='TTF';
+$desc=array (
+  'CapHeight' => 469.0,
+  'XHeight' => 340.0,
+  'FontBBox' => '[-394 -460 781 898]',
+  'Flags' => 68,
+  'Ascent' => 898.0,
+  'Descent' => -458.0,
+  'Leading' => 0.0,
+  'ItalicAngle' => -10.0,
+  'StemV' => 87.0,
+  'MissingWidth' => 750.0,
+);
+$unitsPerEm=4096;
+$up=-50;
+$ut=25;
+$strp=195;
+$strs=25;
+$ttffile='C:\xampp\htdocs\register\vendor\mpdf\mpdf\src\Config/../../ttfonts/cordiai.ttf';
+$TTCfontID='0';
+$originalsize=95124;
+$sip=false;
+$smp=false;
+$BMPselected=false;
+$fontkey='sarabunI';
+$panose=' 8 5 2 b 3 4 2 2 2 9 2 4';
+$haskerninfo=false;
+$haskernGPOS=false;
+$hassmallcapsGSUB=false;
+$fontmetrics='win';
+// TypoAscender/TypoDescender/TypoLineGap = 893, -254, 0
+// usWinAscent/usWinDescent = 898, -458
+// hhea Ascent/Descent/LineGap = 893, -254, 0
+$useOTL=0x0000;
+$rtlPUAstr='';
