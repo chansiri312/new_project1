@@ -52,7 +52,7 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                 </a>
             </div>
             <p class="text-light">
-                Welcome <strong><?php echo $result1['farm_name'] ?></strong>
+            ยินดีต้อนรับ <strong><?php echo $result1['farm_name'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>
             &nbsp;&nbsp;

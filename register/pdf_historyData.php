@@ -84,7 +84,7 @@ header("Location: MyPDF.pdf");
 
     if ($_GET['number'] != '') {
 
-        $sql = "select * from historydata  where number = '" . $_GET['number'] . "'";
+        $sql = "select * from historydataperson  where number = '" . $_GET['number'] . "'";
 
         $query = mysqli_query($conn, $sql);
 
@@ -92,7 +92,7 @@ header("Location: MyPDF.pdf");
     } else {
 
 
-        $sql = "select * from historydata  where recorder_name = '" . $_SESSION['username'] . "'";
+        $sql = "SELECT * FROM historydataperson ORDER BY number;";
 
         $query = mysqli_query($conn, $sql);
     }
@@ -254,10 +254,10 @@ header("Location: MyPDF.pdf");
                         <font size="+2"><?php echo $result['num_milk']; ?></font>
                     </td>
                     <td align="center">
-                        <font size="+2"><?php echo $result['num_date_history']; ?></font>
+                        <font size="+2"><?php echo $result['date']; ?></font>
                     </td>
                     <td align="center">
-                        <font size="+2"><?php echo $result['milk']; ?></font>
+                        <font size="+2"><?php echo $result['tatal_milk']; ?></font>
                     </td>
                     <td align="center">
                         <font size="+2"><?php echo $result['note']; ?></font>

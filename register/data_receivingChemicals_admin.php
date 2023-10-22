@@ -23,7 +23,8 @@ $sql1 = "select * from user  where username = '" . $_SESSION['username'] . "'";
 $query1 = mysqli_query($conn, $sql1);
 $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
-
+$sql2 = "select * from user where userlevel ='M' ";
+$result2 = $conn->query($sql2);
 
 
 
@@ -53,7 +54,7 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                 </a>
             </div>
             <p class="text-light">
-            ยินดีต้อนรับ <strong><?php echo $result1['farm_name'] ?></strong>
+            Welcome Admin <strong><?php echo $_SESSION['username'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>
             &nbsp;&nbsp;
@@ -72,13 +73,13 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
         $sql = "SELECT * FROM receivingchemicals WHERE number LIKE '%" . $strKeyword . "%' ";
 
         $query = mysqli_query($conn, $sql);
-    } else {
+    } else
 
 
-        $sql = "select * from receivingchemicals  where recorder_name = '" . $_SESSION['username'] . "'";
+        $sql = "select * from receivingchemicals  where recorder_name = '" . $_GET['id'] . "'";
 
-        $query = mysqli_query($conn, $sql);
-    }
+    $query = mysqli_query($conn, $sql);
+    //}
     ?>
 
     <div class="homecontent">
@@ -93,29 +94,35 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                 <h1>ข้อมูลการรับ-จ่ายเวชภัณฑ์และสารเคมี</h1>
                             </i>
                             <br />
-                            <table width="700" border="0">
+                            <table width="573" border="0">
+                                <?php $row = $result2->fetch_assoc()  ?>
+
+
                                 <tr>
-                                    <th width="116"> <a href="form_receivingChemicals.php"><button type="submid" class="btn btn-success">เพิ่มข้อมูล</button></a></th>
-                                    <th width="116"><a href="index.php"><button type="submid" class="btn btn-success">ย้อนกลับ</button>
+
+                                    <th width="116"><a href="index_admin.php?id=<?php echo $row['username']; ?>"><button type="submid" class="btn btn-success">ย้อนกลับ</button>
                                         </a></th>
 
 
+
+
+
                                     <form name="frmSearch" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
-                                        <th width="330">ชื่อเวชภัณฑ์
+                                        <th width="343">ชื่อเวชภัณฑ์
                                             <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $strKeyword; ?>">
                                             <input type="submit" value="ค้นหา">
                                         </th>
                                     </form>
-                                    <th align="rigth">
-                                        <font face="cordia new" size="+2">
-                                            <a href="pdf_receivingchemicals.php?date=<?php echo $strKeyword; ?>" target="blank">
-                                                <img src="images/pdf-pic.png" width="36" height="37" /></a>
-                                        </font>
-                                    </th>
                                 </tr>
 
+
                             </table>
-                            <br />
+                            
+
+                            <?php
+
+                            ?>
+                            <br /><br />
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -135,21 +142,18 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                 </thead>
                                 <tbody>
                                     <?php $item = 1;
-                                    while ($row = $result->fetch_assoc()) : 
-                                        // $sql="buy_medical" -"use_medical" ;
-                                        // $result=mysqli_query($conn ,$sql);
-                                        // echo $row[$sql];?>
+                                    while ($result = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
                                         
                                         <tr>
                                             <td><?php echo $item ?></td>
-                                            <td><?php echo $row['date']; ?></td>
+                                            <td><?php echo $result['date']; ?></td>
 
-                                            <td><?php echo $row['name_medical']; ?></td>
-                                            <td><?php echo $row['name_chemical']; ?></td>
-                                            <td><?php echo $row['buy_medical']; ?></td>
+                                            <td><?php echo $result['name_medical']; ?></td>
+                                            <td><?php echo $result['name_chemical']; ?></td>
+                                            <td><?php echo $result['buy_medical']; ?></td>
                                             
-                                            <td><?php echo $row['use_medical']; ?></td>
-                                            <td><?php echo $row['total_medical']; ?></td>
+                                            <td><?php echo $result['use_medical']; ?></td>
+                                            <td><?php echo $result['total_medical']; ?></td>
                                             
                                             
 
@@ -158,12 +162,12 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
                                             <td>
 
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $row['id'] ?>">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $result['id'] ?>">
                                                     รายละเอียด
                                                 </button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="exampleModal<?php echo $result['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -172,18 +176,18 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="row">
-                                                                    <p5>วัน/เดือน/ปี : <?php echo $row['date'] ?></p5>
-                                                                    <p5>ชื่อเวชภัณฑ์ : <?php echo $row['name_medical'] ?></p5>
-                                                                    <p5>จำนวนที่ซื้อ : <?php echo $row['buy_medical'] ?> </p5>
-                                                                    <p5>จำนวนที่ใช้ : <?php echo $row['use_medical'] ?> </p5>
+                                                                    <p5>วัน/เดือน/ปี : <?php echo $result['date'] ?></p5>
+                                                                    <p5>ชื่อเวชภัณฑ์ : <?php echo $result['name_medical'] ?></p5>
+                                                                    <p5>จำนวนที่ซื้อ : <?php echo $result['buy_medical'] ?> </p5>
+                                                                    <p5>จำนวนที่ใช้ : <?php echo $result['use_medical'] ?> </p5>
                                                         
-                                                                    <p5>คงเหลือ : <?php echo $row['total_medical'] ?> </p5>
-                                                                    <p5>ชื่อสารเคมี : <?php echo $row['name_chemical'] ?> </p5>
+                                                                    <p5>คงเหลือ : <?php echo $result['total_medical'] ?> </p5>
+                                                                    <p5>ชื่อสารเคมี : <?php echo $result['name_chemical'] ?> </p5>
 
-                                                                    <p5>จำนวนที่ซื้อ : <?php echo $row['buy_chemical'] ?> </p5>
-                                                                    <p5>จำนวนที่ใช้ : <?php echo $row['use_chemical'] ?> </p5>
-                                                                    <p5>คงเหลือ : <?php echo $row['total_chemical'] ?> </p5>
-                                                                    <p5>หมายเหตุ : <?php echo $row['note'] ?> </p5>
+                                                                    <p5>จำนวนที่ซื้อ : <?php echo $result['buy_chemical'] ?> </p5>
+                                                                    <p5>จำนวนที่ใช้ : <?php echo $result['use_chemical'] ?> </p5>
+                                                                    <p5>คงเหลือ : <?php echo $result['total_chemical'] ?> </p5>
+                                                                    <p5>หมายเหตุ : <?php echo $result['note'] ?> </p5>
 
                                                                 </div>
                                                             </div>
@@ -195,16 +199,13 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href='form_edit_receivingChemicals.php?editID=<?php echo $row["id"]; ?>'>
-                                                    <button type="submit" class="btn btn-secondary btn-block">แก้ไขข้อมูล</button></a>&nbsp;&nbsp;
-                                                <a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='receivingChemicalsdb.php?CusID=<?php echo $row["id"]; ?>';}">
-                                                    <button type="submit" class="btn btn-danger ">ลบข้อมูล</button></a>
+                                                
                                             </td>
 
                                         </tr>
                                         <?php $item++; ?>
 
-                                    <?php endwhile ?>
+                                        <?php } ?>
 
                                 </tbody>
                             </table>

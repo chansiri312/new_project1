@@ -80,6 +80,10 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                     <label for="province" class="form-label">จังหวัด</label>
                     <input type="text" class="form-control" name="province" value="<?php echo $result1['province']; ?>">
                 </div>
+                <div class="col-md-6">
+                        <input type="file" name="fileupload">
+                       
+                </div>
                 <div class="mindphp">
                     <label for="id">ไอดีแก้ไข</label><br />
                     <select name="id" class=" form-select">

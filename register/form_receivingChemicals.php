@@ -25,16 +25,16 @@ session_start();
             <form action="receivingChemicalsdb.php" method="post">
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="date">วัน/เดือน/ปี</label>
-                        <input type="date" class="form-control"  name="date">
+                        <label for="date">วัน/เดือน/ปี <font color='red'>*</font></label>
+                        <input type="date" class="form-control" name="date" required>
                     </div>
                 </div>
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label for="name_medical" class="form-label">ชื่อของเวชภัณฑ์</label>
-                        <select name="name_medical" class="form-select">
-                            <option value=""> เลือกเวชภัณฑ์ </option>
+                        <label for="name_medical" class="form-label">ชื่อของเวชภัณฑ์ <font color='red'>*</font></label>
+                        <select name="name_medical" class="form-select" required>
+                            <option value="">  </option>
                             <?php
 
                             $strSQL = "SELECT * FROM supplies ORDER BY name_supplies ASC";
@@ -54,23 +54,10 @@ session_start();
                             ?>
                         </select>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col">
-                        <label for="buy_medical">จำนวนที่ซื้อ/ยกมา</label>
-                        <input type="number" class="form-control"  name="buy_medical">
-                    </div>
-                    <div class="col">
-                        <label for="use_medical">จำนวนที่ใช้</label>
-                        <input type="number" class="form-control"  name="use_medical">
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col">
-                        <label for="name_chemical" class="form-label">ชื่อสารเคมี</label>
-                        <select name="name_chemical" class="form-select">
-                            <option value=""> เลือกสารเคมี </option>
+                        <label for="name_chemical" class="form-label">ชื่อสารเคมี <font color='red'>*</font></label>
+                        <select name="name_chemical" class="form-select" required>
+                            <option value="">  </option>
 
                             <?php
 
@@ -94,19 +81,31 @@ session_start();
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label for="buy_chemical">จำนวนที่ซื้อ/ยกมา</label><br />
-                        <input type="number" class="form-control"  name="buy_chemical">
+                        <label for="buy_medical">จำนวนที่ซื้อ/ยกมา <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="buy_medical" required>
                     </div>
                     <div class="col">
-                        <label for="use_chemical">จำนวนที่ใช้</label><br />
-                        <input type="number" class="form-control"  name="use_chemical">
+                        <label for="use_medical">จำนวนที่ใช้ <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="use_medical" required>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="use_chemical">ผู้บันทึก <font color='red'>*</font></label><br />
+                        <input type="text" class="form-control" name="use_chemical" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="note" class="form-label">หมายเหตุ</label>
+                        <input type="text" class="form-control" name="note">
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <label for="note" class="form-label">หมายเหตุ</label>
-                    <input type="text" class="form-control" name="note" >
-                </div>
+
+
 
 
                 <div class="mindphp">
@@ -128,7 +127,7 @@ session_start();
             <a href="data_receivingChemicals.php"><button type="submid" class="btn btn-danger">ย้อนกลับ</button></a>
         </div>
     </div>
-    
+
 
 </body>
 

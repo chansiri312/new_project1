@@ -24,13 +24,13 @@ session_start();
             <form class="row g-3" action="farmAccountdb.php" method="post">
 
                 <div class="col-md-6">
-                    <label for="birthday">วัน/เดือน/ปี(เกิด)</label><br />
-                    <input type="date" class="form-control" name="birthday">
+                    <label for="birthday">วัน/เดือน/ปี(เกิด) <font color='red'>*</font></label><br />
+                    <input type="date" class="form-control" name="birthday" required>
                 </div>
 
                 <div class="col-md-6">
                     <label for="Entrances" class="form-label">ข้อมูลจำนวนเข้า</label>
-                    <input type="number" class="form-control" name="Entrances" />
+                    <input type="number" class="form-control" name="Entrances"  />
                 </div>
 
                 <div class="col-md-6">

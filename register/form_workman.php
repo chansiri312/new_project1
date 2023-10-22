@@ -27,7 +27,7 @@ session_start();
 
                     <div class="col-md-1">
                         <label for="gen" class="form-label">คำนำหน้าชื่อ</label>
-                        <select name="gen" class="form-select">
+                        <select name="gen" class="form-select" >
                             <option>นาย</option>
                             <option>นาง</option>
                             <option>นางสาว</option>
@@ -35,22 +35,22 @@ session_start();
                     </div>
 
                     <div class="col">
-                        <label for="name" class="form-label">ชื่อ-นามสกุล</label>
-                        <input type="text" class="form-control" name="name" />
+                        <label for="name" class="form-label">ชื่อ-นามสกุล <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="name" required />
                     </div>
 
 
                     <div class="col-md-2">
-                        <label for="old" class="form-label">อายุ</label>
-                        <input type="date" class="form-control" name="old" />
+                        <label for="old" class="form-label">อายุ <font color='red'>*</font></label>
+                        <input type="date" class="form-control" name="old"  required/>
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="educational" class="form-label">วุฒิการศึกษา</label>
+                        <label for="educational" class="form-label">วุฒิการศึกษา <font color='red'>*</font></label>
                         <select name="educational" class="form-select" required>
-                            <option value=""> วุฒิการศึกษา </option>
+                            <option value="">  </option>
 
                             <?php
 
@@ -73,39 +73,39 @@ session_start();
                     </div>
 
                     <div class="col-md-6">
-                        <label for="date_job" class="form-label">วันที่เข้าทำงาน</label><br />
-                        <input type="date" class="form-control" name="date_job" />
+                        <label for="date_job" class="form-label">วันที่เข้าทำงาน <font color='red'>*</font></label><br />
+                        <input type="date" class="form-control" name="date_job" required />
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="name_train" class="form-label">ข้อมูลเรื่องที่ฝึกอบรม</label>
-                        <input type="text" class="form-control" name="name_train" />
+                        <label for="name_train" class="form-label">ข้อมูลเรื่องที่ฝึกอบรม <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="name_train" required />
                     </div>
 
                     <div class="col-md-6">
-                        <label for="date_train">ข้อมูลวันที่ฝึกอบรม</label><br />
-                        <input type="date" class="form-control" name="date_train" />
+                        <label for="date_train">ข้อมูลวันที่ฝึกอบรม <font color='red'>*</font></label><br />
+                        <input type="date" class="form-control" name="date_train" required />
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="time_train" class="form-label">ข้อมูลระยะเวลาในการฝึกอบรม</label>
-                        <input type="text" class="form-control" name="time_train" />
+                        <label for="time_train" class="form-label">ข้อมูลระยะเวลาในการฝึกอบรม <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="time_train" required />
                     </div>
 
                     <div class="col-md-6">
-                        <label for="location_train" class="form-label">ข้อมูลสถานที่ฝึกอบรม</label>
-                        <input type="text" class="form-control" name="location_train" />
+                        <label for="location_train" class="form-label">ข้อมูลสถานที่ฝึกอบรม <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="location_train" required />
                     </div>
                 </div>
 
 
                 <div class="col-md-6">
-                    <label for="assessor" class="form-label">ข้อมูลผู้จัดการฟาร์ม/ผู้ประเมินผล</label>
-                    <input type="text" class="form-control" name="assessor" />
+                    <label for="assessor" class="form-label">ข้อมูลผู้จัดการฟาร์ม/ผู้ประเมินผล <font color='red'>*</font></label>
+                    <input type="text" class="form-control" name="assessor" required />
                 </div>
 
 

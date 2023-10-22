@@ -26,12 +26,12 @@ session_start();
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="date">ข้อมูลวัน/เดือน/ปี</label><br />
-                        <input type="date" class="form-control" id="birthday" name="date">
+                        <label for="date">ข้อมูลวัน/เดือน/ปี <font color='red'>*</font></label><br />
+                        <input type="date" class="form-control" id="birthday" name="date" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="stall" class="form-label">ข้อมูลคอก/ฝูง</label>
+                        <label for="stall" class="form-label">ข้อมูลคอก/ฝูง <font color='red'>*</font></label>
                         <select name="stall" class="form-select" required>
                             <option>คอก</option>
                             <option>ฝูง</option>
@@ -42,9 +42,9 @@ session_start();
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="name_vaccine" class="form-label">ข้อมูลชนิด/ชื่อวัคซีน</label>
+                        <label for="name_vaccine" class="form-label">ข้อมูลชนิด/ชื่อวัคซีน <font color='red'>*</font></label>
                         <select name="name_vaccine" class="form-select" required>
-                            <option value=""> เลือกเวชภัณฑ์ </option>
+                            <option value="">  </option>
 
                             <?php
 
@@ -68,7 +68,7 @@ session_start();
                     </div>
 
                     <div class="col-md-6">
-                        <label for="num_goat" class="form-label">ข้อมูลจำนวนแพะนม(ตัว)</label>
+                        <label for="num_goat" class="form-label">ข้อมูลจำนวนแพะนม(ตัว) <font color='red'>*</font></label>
                         <input type="number" class="form-control" name="num_goat" />
                     </div>
                 </div>
@@ -79,9 +79,9 @@ session_start();
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="name_mediacal" class="form-label">ข้อมูลชนิด/ชื่อยา</label>
+                        <label for="name_mediacal" class="form-label">ข้อมูลชนิด/ชื่อยา <font color='red'>*</font></label>
                         <select name="name_mediacal" class="form-select" required>
-                            <option value=""> เลือกเวชภัณฑ์ </option>
+                            <option value="">  </option>
 
                             <?php
 
@@ -104,8 +104,8 @@ session_start();
                     </div>
 
                     <div class="col-md-6">
-                        <label for="num_goat1" class="form-label">ข้อมูลจำนวนแพะ(ตัว)</label>
-                        <input type="text" class="form-control" name="num_goat1" />
+                        <label for="num_goat1" class="form-label">ข้อมูลจำนวนแพะ(ตัว) <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="num_goat1" required />
                     </div>
                    
                 </div>
@@ -115,20 +115,20 @@ session_start();
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="examination" class="form-label">ข้อมูลการตรวจโรคบรูเซลโลซีล</label>
-                        <input type="text" class="form-control" name="examination" />
+                        <label for="examination" class="form-label">ข้อมูลการตรวจโรคบรูเซลโลซีล <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="examination" required />
                     </div>
 
                     <div class="col-md-6">
-                        <label for="operator" class="form-label">ชื่อผู้ปฏิบัติงาน</label>
-                        <input type="text" class="form-control" name="operator" />
+                        <label for="operator" class="form-label">ชื่อผู้ปฏิบัติงาน <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="operator" required />
                     </div>
                 </div>
 
 
                 <div class="col-md-6">
-                    <label for="controller" class="form-label">ชื่อผู้ควบคุม</label>
-                    <input type="text" class="form-control" name="controller" />
+                    <label for="controller" class="form-label">ชื่อผู้ควบคุม <font color='red'>*</font></label>
+                    <input type="text" class="form-control" name="controller" required />
                 </div>
 
 

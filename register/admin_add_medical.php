@@ -14,7 +14,7 @@ session_start();
 
 <body>
     <div class="p-3 mb-2 bg-success text-white">
-        <h3 align="center">เพิ่มผลิตภัณฑ์ยาเวชภัณฑ์</h3>
+        <h3 align="center">เพิ่มผลิตภัณฑ์ยาถ่ายพยาธิ</h3>
         <div style="background-color: rgb(133, 191, 165); width: 100%; height: 100vh;  border-radius: 24px; padding: 20px 18px 30px 18px;" class="mx-auto align-self-center">
 
             <form action="admin_medicaldb.php" method="post">

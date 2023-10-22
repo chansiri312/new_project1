@@ -26,14 +26,14 @@ session_start();
             <form action="maternalReproductiondb.php" method="post">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="num1">หมายเลขประจำตัว</label><br />
-                        <input type="number" class="form-control"  name="num1">
+                        <label for="num1">หมายเลขประจำตัว <font color='red'>*</font></label><br />
+                        <input type="number" class="form-control"  name="num1" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="gen" class="form-label">ชื่อพันธุ์แพะนม</label>
+                        <label for="gen" class="form-label">ชื่อพันธุ์แพะนม <font color='red'>*</font></label>
                         <select name="gen" class="form-select" required>
-                            <option value=""> เลือกพันธุ์แพะนม </option>
+                            <option value="">  </option>
 
                             <?php
 
@@ -57,57 +57,57 @@ session_start();
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="num_dad">หมายเลขพ่อ</label><br />
-                        <input type="number" class="form-control"  name="num_dad">
+                        <label for="num_dad">หมายเลขพ่อ <font color='red'>*</font></label><br />
+                        <input type="number" class="form-control"  name="num_dad" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="num_mom" class="form-label">หมายเลขแม่</label>
-                        <input type="number" class="form-control" name="num_mom" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="date">วัน/เดือน/ปี(ที่ผสมพันธุ์)</label><br />
-                        <input type="date" class="form-control" id="birthday" name="date">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="name_dad" class="form-label">ชื่อพ่อแพะที่ใช้ผสมพันธุ์</label>
-                        <input type="number" class="form-control" name="name_dad" />
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <label for="old" class="form-label">อายุเมื่อผสมพันธุ์</label>
-                        <input type="number" class="form-control" name="old" />
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="birthdate" class="form-label">ข้อมูลกำหนดวันคลอด</label>
-                        <input type="text" class="form-control" name="birthdate" />
+                        <label for="num_mom" class="form-label">หมายเลขแม่ <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="num_mom" required>
                     </div>
                 </div>
 
                 <div class="row">
-
                     <div class="col-md-6">
-                        <label for="birthchild" class="form-label">น้ำหนักเมื่อผสมพันธุ์</label>
-                        <input type="text" class="form-control" name="birthchild" />
+                        <label for="date">วัน/เดือน/ปี(ที่ผสมพันธุ์) <font color='red'>*</font></label><br />
+                        <input type="date" class="form-control" id="birthday" name="date" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="birthday">วัน/เดือน/ปี ลูกที่คลอด</label><br />
-                        <input type="date" class="form-control" id="birthday" name="birthday">
+                        <label for="name_dad" class="form-label">พ่อแพะที่ใช้ผสมพันธุ์ <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="name_dad" required>
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="number" class="form-label">ข้อมูลหมายเลข</label>
-                        <input type="number" class="form-control" name="number" />
+                        <label for="old" class="form-label">อายุเมื่อผสมพันธุ์ <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="old" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="birthdate" class="form-label">ข้อมูลกำหนดวันคลอด <font color='red'>*</font></label>
+                        <input type="date" class="form-control" name="birthdate" required>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="birthchild" class="form-label">น้ำหนักเมื่อผสมพันธุ์ <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="birthchild" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="birthday">วัน/เดือน/ปี ลูกที่คลอด <font color='red'>*</font></label><br />
+                        <input type="date" class="form-control" id="birthday" name="birthday" required>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="number" class="form-label">ข้อมูลหมายเลข <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="number" required>
                     </div>
 
                     <div class="col-md-6">

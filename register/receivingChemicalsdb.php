@@ -33,7 +33,7 @@ if (isset($_POST['sub_chemical'])) {
       $sql = "INSERT INTO receivingchemicals(date, name_medical , buy_medical , use_medical, total_medical , name_chemical , buy_chemical , use_chemical ,total_chemical, note , recorder_name ) 
       VALUES('$date','$name_medical','$buy_medical','$use_medical','$buy_medical' - '$use_medical','$name_chemical','$buy_chemical','$use_chemical','$buy_chemical'-'$use_chemical','$note','$con_name') ";
 mysqli_query($conn, $sql);
-// header('location: data_receivingChemicals.php');
+header('location: data_receivingChemicals.php');
 
   
 
@@ -45,11 +45,11 @@ mysqli_query($conn, $sql);
   }
 }
 
-// $sql = "DELETE FROM receivingchemicals WHERE id = '" . $_GET['CusID'] . "'";
+$sql = "DELETE FROM receivingchemicals WHERE id = '" . $_GET['CusID'] . "'";
 
-// if ($conn->query($sql) === TRUE) {
-//   echo "Record deleted successfully";
-//   header("location: data_receivingChemicals.php");
-// } else {
-//   echo "Error deleting record: " . $conn->error;
-// }
+if ($conn->query($sql) === TRUE) {
+  echo "Record deleted successfully";
+  header("location: data_receivingChemicals.php");
+} else {
+  echo "Error deleting record: " . $conn->error;
+}

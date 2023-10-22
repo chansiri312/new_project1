@@ -41,7 +41,7 @@ $result = $conn->query($sql);
                     มาตรฐานฟาร์มแพะนม
                 </a>
             </div>
-            <p>
+            <p class="text-light">
                 Welcome Admin <strong><?php echo $_SESSION['username'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>

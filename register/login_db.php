@@ -37,7 +37,7 @@
                 }
             } else{
                 array_push($errors,"Wrong username/password conbination");
-                $_SESSION['error'] = "Wrong username or password try again";
+                $_SESSION['error'] = "ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง!!";
                 header("location: login.php");
             }
         }

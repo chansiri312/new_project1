@@ -13,11 +13,12 @@ $errors = array();
     $tumbon =  $_POST['tumbon'];
     $district =  $_POST['district'];
     $province =  $_POST['province'];
+    $fileupload = $_POST['im'];
 
 
 
     $sql = " UPDATE user SET farm_name = '$farm_name' , email = '$email', number_farm = '$number_farm', name = '$name'
- , farm_number = '$farm_number', rode ='$rode', tumbon = '$tumbon' , district ='$district', province ='$province'
+ , farm_number = '$farm_number', rode ='$rode', tumbon = '$tumbon' , district ='$district', province ='$province', im = '$fileupload'
    WHERE id = '$id' ";
     $result = mysqli_query($conn, $sql);
 

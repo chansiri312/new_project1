@@ -11,11 +11,21 @@ session_start();
     <title>Login</title>
 
     <link rel="stylesheet" href="style.css">
-
+    <style>
+        form {
+            width: 30%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #b8c4de;
+            background: white;
+            border-radius: 0px 0px 10px 10px;
+        }
+    </style>
 
 </head>
 
 <body>
+    <br /><br /><br /><br />
     <div class="header">
         <h2>เว็บแอปพลิเคชันสำหรับมาตรฐานฟาร์มแพะนม</h2>
 
@@ -34,6 +44,7 @@ session_start();
             </div>
         <?php endif ?>
 
+
         <div class="input-group">
             <label for="username">ผู้ใช้ระบบ</label>
             <input type="text" name="username" required>
@@ -42,14 +53,7 @@ session_start();
             <label for="password">รหัสผ่าน</label>
             <input type="password" name="password">
         </div>
-        <!-- <div class="input-group">
-            <label for="userlevel">userlevel</label>
-            <select name="userlevel" class="form-select">
-                <option selected>เลือกสถานะผู้ใช้</option>
-                <option>A</option>
-                <option>M</option>
-            </select>
-        </div> -->
+
         <div class="input-group">
             <button type="submid" name="login_user" class="btn">เข้าสู่ระบบ</button>
         </div>

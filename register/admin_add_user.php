@@ -10,11 +10,16 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <title>แบบบันทึกข้อมูลทะเบียนประวัติแพะนม</title>
+    <style>
+        .mindphp {
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <body>
     <div class="p-3 mb-2 bg-success text-white">
-        <h3 align="center">แบบบันทึกข้อมูลทะเบียนประวัติแพะนม</h3>
+        <h3 align="center">เพิ่มข้อมูล</h3>
         <div style="background-color: rgb(133, 191, 165); width: 100%; height: 100vh;  border-radius: 24px; padding: 20px 18px 30px 18px;" class="mx-auto align-self-center">
 
             <form action="admin_adddb.php" method="post">
@@ -25,13 +30,22 @@ session_start();
                         <input type="text" class="form-control" name="username" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="password" class="form-label">รหัสผ่าน</label>
-                        <input type="number" class="form-control" name="password" required>
+                        <label for="password1" class="form-label">รหัสผ่าน</label>
+                        <input type="password" class="form-control" name="password1" required>
                     </div>
                     <div class="col-md-6">
+                        <label for="password2" class="form-label">ยืนยันรหัสผ่าน</label>
+                        <input type="password" class="form-control" name="password2" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">ชื่อ-นามสกุล</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="mindphp">
                         <label for="userlevel" class="form-label">สถานะ</label>
                         <select name="userlevel" class="form-select" >
-                            <option> A </option>
+                            <option> M </option>
                         </select>
                     </div>
                 </div>

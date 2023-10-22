@@ -12,9 +12,8 @@ if (isset($_GET['login'])) {
     header('localhost:login.php');
 }
 
-$sql = "select * from historydataperson  where recorder_name = '" . $_SESSION['username'] . "'";
 
-
+$sql = "select * from maternalreproduction where recorder_name = '" . $_SESSION['username'] . "'";
 $result = $conn->query($sql);
 
 
@@ -23,11 +22,9 @@ $sql1 = "select * from user  where username = '" . $_SESSION['username'] . "'";
 $query1 = mysqli_query($conn, $sql1);
 $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
+
 $sql2 = "select * from user where userlevel ='M' ";
 $result2 = $conn->query($sql2);
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -45,12 +42,10 @@ $result2 = $conn->query($sql2);
 </head>
 
 <body>
-
-
     <div class="dataMheader">
         <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #006E4D;">
             <div class="container-fluid">
-                <a class=" text-light navbar-brand" href="index.php">
+                <a class="text-light  navbar-brand" href="index.php">
                     <img src="362140860_841452967338701_8340761728124446768_n.png" alt="" width="50px" height="50px" class="d-inline-block align-text-">
                     มาตรฐานฟาร์มแพะนม
                 </a>
@@ -62,9 +57,6 @@ $result2 = $conn->query($sql2);
             &nbsp;&nbsp;
         </nav>
     </div>
-
-
-
     <?php
     ini_set('display_errors', 1);
     error_reporting(~0);
@@ -75,13 +67,13 @@ $result2 = $conn->query($sql2);
         $strKeyword = $_POST["txtKeyword"];
 
 
-        $sql = "SELECT * FROM historydataperson WHERE number LIKE '%" . $strKeyword . "%' ";
+        $sql = "SELECT * FROM maternalreproduction WHERE number LIKE '%" . $strKeyword . "%' ";
 
         $query = mysqli_query($conn, $sql);
     } else
 
 
-        $sql = "select * from historydataperson  where recorder_name = '" . $_GET['id'] . "'";
+        $sql = "select * from maternalreproduction  where recorder_name = '" . $_GET['id'] . "'";
 
     $query = mysqli_query($conn, $sql);
     //}
@@ -96,7 +88,7 @@ $result2 = $conn->query($sql2);
                         <br />
                         <div class="card ">
                             <i class="fa fa-align-center" aria-hidden="true">
-                                <h1>ข้อมูลประวัติการให้ผลผลิต(รายฟาร์ม)</h1>
+                                <h1>ข้อมูลการสืบพันธุ์ของแม่พันธุ์</h1>
                             </i>
                             <br />
                             <table width="573" border="0">
@@ -122,41 +114,38 @@ $result2 = $conn->query($sql2);
 
 
                             </table>
+                            
 
                             <?php
 
                             ?>
                             <br /><br />
-
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col">ลำดับที่</th>
-
-                                        <th scope="col">หมายเลขแพะนม</th>
-                                        <th scope="col">ครั้งที่ของการให้นม</th>
-                                        <th scope="col">จำนวนวันให้ผลผลิต</th>
-                                        <th scope="col">ปริมาณน้ำนม</th>
-                                        <th scope="col">หมายเหตุ</th>
-
+                                        <th scope="col">หมายเลขประจำตัว</th>
+                                        <th scope="col">วัน/เดือน/ปี ที่ผสมพันธุ์</th>
+                                        <th scope="col">พ่อพันธุ์ที่ใช้ผสม</th>
+                                        <th scope="col">อายุเมื่อผสมพันธุ์</th>
                                         <th scope="cpl">จัดการ</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $item = 1;
-                                    while ($result = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                                    ?>
+                                    while ($result = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
                                         <tr>
                                             <td><?php echo $item ?></td>
-
-                                            <td><?php echo $result['number']; ?></td>
-                                            <td><?php echo $result['num_milk']; ?></td>
+                                            <td><?php echo $result['num1']; ?></td>
                                             <td><?php echo $result['date']; ?></td>
-                                            <td><?php echo $result['tatal_milk']; ?></td>
-                                            <td><?php echo $result['note']; ?></td>
+                                            <td><?php echo $result['name_dad']; ?></td>
+                                            <td><?php echo $result['old']; ?></td>
+
+
 
                                             <td>
+
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $result['id'] ?>">
                                                     รายละเอียด
                                                 </button>
@@ -166,17 +155,24 @@ $result2 = $conn->query($sql2);
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการให้ผลผลิต(รายตัว)</h5>
+                                                                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการสืบพันธุ์ของแม่พันธุ์</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="row">
-
-                                                                    <p5>หมายเลขแพะ : <?php echo $result['number'] ?></p5>
-
-                                                                    <p5>ครั้งที่ของการให้นม : <?php echo $result['num_milk'] ?> </p5>
-                                                                    <p5>ปริมาณน้ำนม: <?php echo $result['tatal_milk'] ?> </p5>
-                                                                    <p5>จำนวนวันให้ผลผลิต : <?php echo $result['date'] ?> </p5>
+                                                                    <p5>หมายเลขประจำตัว : <?php echo $result['num1'] ?></p5>
+                                                                    <p5>พันธุ์ : <?php echo $result['gen'] ?></p5>
+                                                                    <p5>หมายเลขพ่อ : <?php echo $result['num_dad'] ?></p5>
+                                                                    <p5>หมายเลขแม่ : <?php echo $result['num_mom'] ?></p5>
+                                                                    <p5>วัน/เดือน/ปี ที่ผสมพันธุ์ : <?php echo $result['date'] ?></p5>
+                                                                    <p5>พ่อพันธุ์ีที่ใช้ผสม : <?php echo $result['name_dad'] ?></p5>
+                                                                    <p5>อายุเมื่อผสมพันธุ์ : <?php echo $result['old'] ?> ปี</p5>
+                                                                    <p5>น้ำหนักเมื่อผสมพันธุ์ : <?php echo $result['birthdate'] ?> กิโลกรัม</p5>
+                                                                    <p5>กำหนดวันคลอด : <?php echo $result['birthchild'] ?> วัน</p5><br />
+                                                                    <h5>ลูกที่เกิด </h5>
+                                                                    <p5>วัน/เดือน/ปี : <?php echo $result['birthday'] ?> </p5>
+                                                                    <p5>หมายเลข : <?php echo $result['number'] ?> </p5>
+                                                                    <p5>เพศ : <?php echo $result['gender'] ?> </p5>
                                                                     <p5>หมายเหตุ : <?php echo $result['note'] ?> </p5>
 
                                                                 </div>
@@ -189,20 +185,13 @@ $result2 = $conn->query($sql2);
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='historyDataPersondb.php?CusID=<?php echo $result["id"]; ?>';}">
-                                                    <button type="submit" class="btn btn-danger ">ลบข้อมูล</button></a>
+                                                
                                             </td>
-
-
-
-
 
                                         </tr>
                                         <?php $item++ ?>
-                                    <?php }
-                                    ?>
 
+                                    <?php } ?>
 
                                 </tbody>
                             </table>
@@ -210,7 +199,10 @@ $result2 = $conn->query($sql2);
                     </div>
                 </div>
             </div>
+
         </div>
+
+
     </div>
 
 
@@ -225,8 +217,8 @@ $result2 = $conn->query($sql2);
                 </h3>
 
             </div> -->
-    <!-- 
-<?php endif ?> -->
+
+    <!-- <?php endif ?> -->
 
 
 

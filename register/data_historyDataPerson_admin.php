@@ -12,9 +12,8 @@ if (isset($_GET['login'])) {
     header('localhost:login.php');
 }
 
+
 $sql = "select * from historydataperson  where recorder_name = '" . $_SESSION['username'] . "'";
-
-
 $result = $conn->query($sql);
 
 
@@ -25,9 +24,6 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
 $sql2 = "select * from user where userlevel ='M' ";
 $result2 = $conn->query($sql2);
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -45,12 +41,10 @@ $result2 = $conn->query($sql2);
 </head>
 
 <body>
-
-
     <div class="dataMheader">
         <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #006E4D;">
             <div class="container-fluid">
-                <a class=" text-light navbar-brand" href="index.php">
+                <a class="text-light  navbar-brand" href="index.php">
                     <img src="362140860_841452967338701_8340761728124446768_n.png" alt="" width="50px" height="50px" class="d-inline-block align-text-">
                     มาตรฐานฟาร์มแพะนม
                 </a>
@@ -62,9 +56,6 @@ $result2 = $conn->query($sql2);
             &nbsp;&nbsp;
         </nav>
     </div>
-
-
-
     <?php
     ini_set('display_errors', 1);
     error_reporting(~0);
@@ -87,7 +78,7 @@ $result2 = $conn->query($sql2);
     //}
     ?>
 
-    <div class="homecontent">
+<div class="homecontent">
         <div class="row">
             <br />
             <div class="col">
@@ -96,7 +87,7 @@ $result2 = $conn->query($sql2);
                         <br />
                         <div class="card ">
                             <i class="fa fa-align-center" aria-hidden="true">
-                                <h1>ข้อมูลประวัติการให้ผลผลิต(รายฟาร์ม)</h1>
+                                <h1>ข้อมูลประวัติการให้ผลผลิต(รายตัว)</h1>
                             </i>
                             <br />
                             <table width="573" border="0">
@@ -128,33 +119,31 @@ $result2 = $conn->query($sql2);
                             ?>
                             <br /><br />
 
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ลำดับที่</th>
-
+                                    <th scope="col">ลำดับที่</th>
+                                        <th scope="col">วัน/เดือน/ปี</th>
                                         <th scope="col">หมายเลขแพะนม</th>
-                                        <th scope="col">ครั้งที่ของการให้นม</th>
-                                        <th scope="col">จำนวนวันให้ผลผลิต</th>
-                                        <th scope="col">ปริมาณน้ำนม</th>
-                                        <th scope="col">หมายเหตุ</th>
-
+                                        <th scope="col">ปริมาณน้ำนม (เช้า)</th>
+                                        <th scope="col">ปริมาณน้ำนม (เย็น)</th>
+                                        <th scope="col">รวมปริมาณน้ำนม</th>
                                         <th scope="cpl">จัดการ</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $item = 1;
-                                    while ($result = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                                    ?>
+                                    <?php $item=1;
+                                   while ($result = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                                     ?>
                                         <tr>
-                                            <td><?php echo $item ?></td>
-
-                                            <td><?php echo $result['number']; ?></td>
-                                            <td><?php echo $result['num_milk']; ?></td>
+                                        <td><?php echo $item ?></td>
                                             <td><?php echo $result['date']; ?></td>
+                                            <td><?php echo $result['number']; ?></td>
+                                            <td><?php echo $result['milk_morning']; ?></td>
+                                            <td><?php echo $result['milk_evening']; ?></td>
                                             <td><?php echo $result['tatal_milk']; ?></td>
-                                            <td><?php echo $result['note']; ?></td>
 
                                             <td>
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $result['id'] ?>">
@@ -171,12 +160,12 @@ $result2 = $conn->query($sql2);
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="row">
-
+                                                                    <p5>วัน/เดือน/ปี : <?php echo $result['date'] ?></p5>
                                                                     <p5>หมายเลขแพะ : <?php echo $result['number'] ?></p5>
-
-                                                                    <p5>ครั้งที่ของการให้นม : <?php echo $result['num_milk'] ?> </p5>
-                                                                    <p5>ปริมาณน้ำนม: <?php echo $result['tatal_milk'] ?> </p5>
-                                                                    <p5>จำนวนวันให้ผลผลิต : <?php echo $result['date'] ?> </p5>
+                                                                    <p4>ปริมาณน้ำนม </p4>
+                                                                    <p5>เช้า : <?php echo $result['milk_morning'] ?> กิโลกรัม</p5>
+                                                                    <p5>เย็น : <?php echo $result['milk_evening'] ?> กิโลกรัม</p5>
+                                                                    <p5>รวม : <?php echo $result['tatal_milk'] ?> กิโลกรัม</p5>
                                                                     <p5>หมายเหตุ : <?php echo $result['note'] ?> </p5>
 
                                                                 </div>
@@ -189,9 +178,7 @@ $result2 = $conn->query($sql2);
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='historyDataPersondb.php?CusID=<?php echo $result["id"]; ?>';}">
-                                                    <button type="submit" class="btn btn-danger ">ลบข้อมูล</button></a>
+                                                
                                             </td>
 
 
@@ -200,9 +187,8 @@ $result2 = $conn->query($sql2);
 
                                         </tr>
                                         <?php $item++ ?>
-                                    <?php }
-                                    ?>
 
+                                    <?php } ?>
 
                                 </tbody>
                             </table>
@@ -210,7 +196,10 @@ $result2 = $conn->query($sql2);
                     </div>
                 </div>
             </div>
+
         </div>
+
+
     </div>
 
 
@@ -225,8 +214,8 @@ $result2 = $conn->query($sql2);
                 </h3>
 
             </div> -->
-    <!-- 
-<?php endif ?> -->
+
+    <!-- <?php endif ?> -->
 
 
 

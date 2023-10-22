@@ -26,14 +26,14 @@ session_start();
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="GoatNumber" class="form-label">หมายเลขแพะนม</label>
+                        <label for="GoatNumber" class="form-label">หมายเลขแพะนม <font color='red'>*</font></label>
                         <input type="number" class="form-control" name="GoatNumber" required>
                     </div>
 
                     <div class="col-md-6">
                         <label for="Gender" class="form-label">เพศ</label>
-                        <select name="Gender" class="form-select" required>
-                            <option selected>เลือกเพศ</option>
+                        <select name="Gender" class="form-select" >
+                            <option selected> </option>
                             <option>เพศผู้</option>
                             <option>เพศเมีย</option>
                         </select>
@@ -43,7 +43,7 @@ session_start();
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="MilkGoatBreed" class="form-label">ชื่อพันธุ์แพะนม</label>
+                        <label for="MilkGoatBreed" class="form-label">ชื่อพันธุ์แพะนม <font color='red'>*</font></label>
                         <select name="MilkGoatBreed" class="form-select" required>
                             <option value=""> เลือกพันธุ์แพะนม </option>
 
@@ -68,38 +68,38 @@ session_start();
                     </div>
 
                     <div class="col-md-6">
-                        <label for="birthday">วัน/เดือน/ปี(เกิด)</label><br />
+                        <label for="birthday">วัน/เดือน/ปี(เกิด) <font color='red'>*</font></label><br />
                         <input type="date" class="form-control" name="birthday" required>
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="Weight" class="form-label">น้ำหนักแรกเกิด(Kg)</label>
+                        <label for="Weight" class="form-label">น้ำหนักแรกเกิด(Kg) <font color='red'>*</font></label>
                         <input type="textr" class="form-control" name="Weight" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="Father" class="form-label">หมายเลขพ่อ/ชื่อ</label>
+                        <label for="Father" class="form-label">หมายเลขพ่อ/ชื่อ <font color='red'>*</font></label>
                         <input type="text" class="form-control" name="Father" required>
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="Mother" class="form-label">หมายเลขแม่/ชื่อ</label>
+                        <label for="Mother" class="form-label">หมายเลขแม่/ชื่อ <font color='red'>*</font></label>
                         <input type="text" class="form-control" name="Mother" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="birthday_milk">วัน/เดือน/ปี(หย่านม)</label><br required>
-                        <input type="date" class="form-control" name="birthday_milk">
+                        <label for="birthday_milk">วัน/เดือน/ปี(หย่านม) <font color='red'>*</font></label>
+                        <input type="date" class="form-control" name="birthday_milk" required>
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="Weight_milk" class="form-label">น้ำหนักหย่านม(Kg)</label>
+                        <label for="Weight_milk" class="form-label">น้ำหนักหย่านม(Kg) <font color='red'>*</font></label>
                         <input type="text" class="form-control" name="Weight_milk" required>
                     </div>
 

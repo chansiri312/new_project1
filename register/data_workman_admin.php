@@ -12,7 +12,7 @@ if (isset($_GET['login'])) {
     header('localhost:login.php');
 }
 
-$sql = "select * from historydataperson  where recorder_name = '" . $_SESSION['username'] . "'";
+$sql = "select * from workman where recorder_name = '" . $_SESSION['username'] . "'";
 
 
 $result = $conn->query($sql);
@@ -25,7 +25,6 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
 $sql2 = "select * from user where userlevel ='M' ";
 $result2 = $conn->query($sql2);
-
 
 
 ?>
@@ -45,12 +44,10 @@ $result2 = $conn->query($sql2);
 </head>
 
 <body>
-
-
-    <div class="dataMheader">
+<div class="dataMheader">
         <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #006E4D;">
             <div class="container-fluid">
-                <a class=" text-light navbar-brand" href="index.php">
+                <a class="text-light  navbar-brand" href="index.php">
                     <img src="362140860_841452967338701_8340761728124446768_n.png" alt="" width="50px" height="50px" class="d-inline-block align-text-">
                     มาตรฐานฟาร์มแพะนม
                 </a>
@@ -62,9 +59,6 @@ $result2 = $conn->query($sql2);
             &nbsp;&nbsp;
         </nav>
     </div>
-
-
-
     <?php
     ini_set('display_errors', 1);
     error_reporting(~0);
@@ -75,18 +69,17 @@ $result2 = $conn->query($sql2);
         $strKeyword = $_POST["txtKeyword"];
 
 
-        $sql = "SELECT * FROM historydataperson WHERE number LIKE '%" . $strKeyword . "%' ";
+        $sql = "SELECT * FROM workman WHERE number LIKE '%" . $strKeyword . "%' ";
 
         $query = mysqli_query($conn, $sql);
     } else
 
 
-        $sql = "select * from historydataperson  where recorder_name = '" . $_GET['id'] . "'";
+        $sql = "select * from workman  where recorder_name = '" . $_GET['id'] . "'";
 
     $query = mysqli_query($conn, $sql);
     //}
     ?>
-
     <div class="homecontent">
         <div class="row">
             <br />
@@ -96,7 +89,7 @@ $result2 = $conn->query($sql2);
                         <br />
                         <div class="card ">
                             <i class="fa fa-align-center" aria-hidden="true">
-                                <h1>ข้อมูลประวัติการให้ผลผลิต(รายฟาร์ม)</h1>
+                                <h1>ข้อมูลประวัติบุคลากร</h1>
                             </i>
                             <br />
                             <table width="573" border="0">
@@ -113,7 +106,7 @@ $result2 = $conn->query($sql2);
 
 
                                     <form name="frmSearch" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
-                                        <th width="343">หมายเลขแพะ
+                                        <th width="343">ชื่อ-นามสกุล
                                             <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $strKeyword; ?>">
                                             <input type="submit" value="ค้นหา">
                                         </th>
@@ -122,22 +115,23 @@ $result2 = $conn->query($sql2);
 
 
                             </table>
+                           
 
                             <?php
 
                             ?>
                             <br /><br />
 
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col">ลำดับที่</th>
-
-                                        <th scope="col">หมายเลขแพะนม</th>
-                                        <th scope="col">ครั้งที่ของการให้นม</th>
-                                        <th scope="col">จำนวนวันให้ผลผลิต</th>
-                                        <th scope="col">ปริมาณน้ำนม</th>
-                                        <th scope="col">หมายเหตุ</th>
+                                        <th scope="col">ชื่อ</th>
+                                        <th scope="col">อายุ</th>
+                                        <th scope="col">วุฒิการศึกษา</th>
+                                        <th scope="col">เรื่องที่อบรม</th>
+                                        <th scope="col">ระยะเวลาในการฝึกอบรม</th>
 
                                         <th scope="cpl">จัดการ</th>
 
@@ -145,18 +139,21 @@ $result2 = $conn->query($sql2);
                                 </thead>
                                 <tbody>
                                     <?php $item = 1;
-                                    while ($result = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                                    ?>
+                                    while ($result = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
                                         <tr>
                                             <td><?php echo $item ?></td>
+                                            <td><?php echo $result['name']; ?></td>
 
-                                            <td><?php echo $result['number']; ?></td>
-                                            <td><?php echo $result['num_milk']; ?></td>
-                                            <td><?php echo $result['date']; ?></td>
-                                            <td><?php echo $result['tatal_milk']; ?></td>
-                                            <td><?php echo $result['note']; ?></td>
+                                            <td><?php echo $result['old']; ?></td>
+
+                                            <td><?php echo $result['educational']; ?></td>
+                                            <td><?php echo $result['name_train']; ?></td>
+                                            <td><?php echo $result['time_train']; ?></td>
+
+
 
                                             <td>
+
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $result['id'] ?>">
                                                     รายละเอียด
                                                 </button>
@@ -166,18 +163,28 @@ $result2 = $conn->query($sql2);
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการให้ผลผลิต(รายตัว)</h5>
+                                                                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดประวัติบุคลากร</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="row">
+                                                                    <p5>ชื่อ-นามสกุล : <?php echo $result['gen'] ?> <?php echo $result['name'] ?></p5>
+                                                                    <p5>อายุ : <?php echo $result['old'] ?> ปี</p5>
 
-                                                                    <p5>หมายเลขแพะ : <?php echo $result['number'] ?></p5>
+                                                                    <p5>วุฒิการศึกษา : <?php echo $result['educational'] ?> </p5>
+                                                                    <p5>วันที่เข้าทำงาน : <?php echo $result['date_job'] ?> </p5>
 
-                                                                    <p5>ครั้งที่ของการให้นม : <?php echo $result['num_milk'] ?> </p5>
-                                                                    <p5>ปริมาณน้ำนม: <?php echo $result['tatal_milk'] ?> </p5>
-                                                                    <p5>จำนวนวันให้ผลผลิต : <?php echo $result['date'] ?> </p5>
-                                                                    <p5>หมายเหตุ : <?php echo $result['note'] ?> </p5>
+
+                                                                    <p5>เรื่องที่ฝึกอบรม : <?php echo $result['name_train'] ?> </p5>
+                                                                    <p5>วันที่อบรม : <?php echo $result['date_train'] ?> </p5>
+                                                                    <p5>ระยะเวลาในการฝึกอบรม : <?php echo $result['time_train'] ?> วัน</p5>
+                                                                    <p5>สถานที่ฝึกอบรม : <?php echo $result['location_train'] ?> </p5>
+                                                                    <p5>ผู้ประเมินผล : <?php echo $result['assessor'] ?> </p5>
+
+
+
+
+
 
                                                                 </div>
                                                             </div>
@@ -189,20 +196,13 @@ $result2 = $conn->query($sql2);
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='historyDataPersondb.php?CusID=<?php echo $result["id"]; ?>';}">
-                                                    <button type="submit" class="btn btn-danger ">ลบข้อมูล</button></a>
+                                                
                                             </td>
-
-
-
-
 
                                         </tr>
                                         <?php $item++ ?>
-                                    <?php }
-                                    ?>
 
+                                    <?php } ?>
 
                                 </tbody>
                             </table>
@@ -225,8 +225,8 @@ $result2 = $conn->query($sql2);
                 </h3>
 
             </div> -->
-    <!-- 
-<?php endif ?> -->
+
+    <!-- <?php endif ?> -->
 
 
 

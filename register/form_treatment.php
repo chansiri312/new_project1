@@ -26,26 +26,26 @@ session_start();
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="date">ข้อมูลวัน/เดือน/ปี</label><br />
-                        <input type="date" class="form-control" id="birthday" name="date">
+                        <label for="date">ข้อมูลวัน/เดือน/ปี <font color='red'>*</font></label><br />
+                        <input type="date" class="form-control" id="birthday" name="date" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="number" class="form-label">ข้อมูลหมายเลขประจำตัว</label>
-                        <input type="text" class="form-control" name="number" />
+                        <label for="number" class="form-label">ข้อมูลหมายเลขประจำตัว <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="number" required />
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="health" class="form-label">ข้อมูลข้อมูลสุขภาพ</label>
-                        <input type="text" class="form-control" name="health" />
+                        <label for="health" class="form-label">ข้อมูลข้อมูลสุขภาพ <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="health" required />
                     </div>
 
                     <div class="col-md-6">
                         <label for="gender" class="form-label">เพศ</label>
                         <select name="gender" class="form-select">
-                            <option selected>เลือกเพศ</option>
+                            <option selected> </option>
                             <option>เพศผู้</option>
                             <option>เพศเมีย</option>
                         </select>
@@ -54,22 +54,16 @@ session_start();
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="treatment" class="form-label">ข้อมูลการรักษาและผลการรักษา</label>
-                        <input type="text" class="form-control" name="treatment" />
+                        <label for="treatment" class="form-label">ข้อมูลการรักษาและผลการรักษา <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="treatment" required />
                     </div>
 
                     <div class="col-md-6">
-                        <label for="treat" class="form-label">ชื่อผู้รักษา</label>
-                        <input type="text" class="form-control" name="treat" />
+                        <label for="treat" class="form-label">ชื่อผู้รักษา <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="treat" required />
                     </div>
                 </div>
-                <div class="row">
 
-                    <div class="col-md-6">
-                        <label for="note" class="form-label">หมายเหตุ</label>
-                        <input type="text" class="form-control" name="note" />
-                    </div>
-                </div>
 
                 <div class="mindphp">
                     <label for="con_name" class="form-label">ลงชื่อเจ้าของฟาร์ม</label>

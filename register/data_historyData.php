@@ -13,7 +13,7 @@ if (isset($_GET['login'])) {
 }
 
 
-$sql = "select * from historydata  where recorder_name = '" . $_SESSION['username'] . "'";
+$sql = "select * from historydataperson  where recorder_name = '" . $_SESSION['username'] . "'";
 $result = $conn->query($sql);
 
 
@@ -21,12 +21,6 @@ $sql1 = "select * from user  where username = '" . $_SESSION['username'] . "'";
 
 $query1 = mysqli_query($conn, $sql1);
 $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
-
-
-
-if ($result1["userlevel"] == 'A') {
-    header("location:data_historyData_admin.php");
-}
 
 ?>
 
@@ -48,19 +42,18 @@ if ($result1["userlevel"] == 'A') {
     <div class="dataMheader">
         <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #006E4D;">
             <div class="container-fluid">
-                <a class=" text-light navbar-brand" href="index.php">
+                <a class="text-light  navbar-brand" href="index.php">
                     <img src="362140860_841452967338701_8340761728124446768_n.png" alt="" width="50px" height="50px" class="d-inline-block align-text-">
                     มาตรฐานฟาร์มแพะนม
                 </a>
             </div>
             <p class="text-light">
-                Welcome <strong><?php echo $result1['farm_name'] ?></strong>
+                ยินดีต้อนรับ <strong><?php echo $result1['farm_name'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>
             &nbsp;&nbsp;
         </nav>
     </div>
-
     <?php
     ini_set('display_errors', 1);
     error_reporting(~0);
@@ -71,18 +64,19 @@ if ($result1["userlevel"] == 'A') {
         $strKeyword = $_POST["txtKeyword"];
 
 
-        $sql = "SELECT * FROM historydata WHERE number LIKE '%" . $strKeyword . "%' ";
+        $sql = "SELECT * FROM historydataperson WHERE number LIKE '%" . $strKeyword . "%' ";
 
         $query = mysqli_query($conn, $sql);
     } else {
 
 
-        $sql = "select * from historydata  where recorder_name = '" . $_SESSION['username'] . "'";
+        $sql = "SELECT * FROM historydataperson ORDER BY number;";
 
         $query = mysqli_query($conn, $sql);
     }
     ?>
-    <div class="homecontent">
+
+<div class="homecontent">
         <div class="row">
             <br />
             <div class="col">
@@ -94,15 +88,14 @@ if ($result1["userlevel"] == 'A') {
                                 <h1>ข้อมูลประวัติการให้ผลผลิต(รายฟาร์ม)</h1>
                             </i>
                             <br />
-                            <table width="800" border="0">
+                            <table width="750" border="0">
                                 <tr>
-                                    <th width="100"> <a href="form_historyData.php"><button type="submid" class="btn btn-success">เพิ่มข้อมูล</button></a></th>
-                                    <th width="100"><a href="index.php"><button type="submid" class="btn btn-success">ย้อนกลับ</button>
+                                    <th width="116"><a href="index.php"><button type="submid" class="btn btn-success">ย้อนกลับ</button>
                                         </a></th>
 
 
                                     <form name="frmSearch" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
-                                        <th width="435">หมายเลขประจำตัวแพะนม
+                                        <th width="370">หมายเลขแพะนม
                                             <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $strKeyword; ?>">
                                             <input type="submit" value="ค้นหา">
                                         </th>
@@ -122,28 +115,34 @@ if ($result1["userlevel"] == 'A') {
                             ?>
                             <br /><br />
 
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ลำดับที่</th>
-                                        <th scope="col">หมายเลขประจำตัวแพะนม</th>
+                                    <th scope="col">ลำดับที่</th>
+                                        
+                                        <th scope="col">หมายเลขแพะนม</th>
                                         <th scope="col">ครั้งที่ของการให้นม</th>
+                                        <th scope="col">จำนวนวันให้ผลผลิต</th>
+                                        <th scope="col">ปริมาณน้ำนม</th>
+                                        <th scope="col">หมายเหตุ</th>
+
                                         <th scope="cpl">จัดการ</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $item = 1;
-                                    while ($result = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                                    ?>
+                                    <?php $item=1;
+                                   while ($result = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                                     ?>
                                         <tr>
-                                            <td><?php echo $item ?></td>
+                                        <td><?php echo $item ?></td>
+                                        
                                             <td><?php echo $result['number']; ?></td>
-
                                             <td><?php echo $result['num_milk']; ?></td>
-
-
-
+                                            <td><?php echo $result['date']; ?></td>
+                                            <td><?php echo $result['tatal_milk']; ?></td>
+                                            <td><?php echo $result['note']; ?></td>
 
                                             <td>
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $result['id'] ?>">
@@ -155,15 +154,18 @@ if ($result1["userlevel"] == 'A') {
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการให้ผลผลิต(รายฟาร์ม)</h5>
+                                                                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการให้ผลผลิต(รายตัว)</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="row">
-                                                                    <p5>หมายเลขประจำตัวแพะ : <?php echo $result['number'] ?></p5>
-                                                                    <p5>ครั้งที่ของการให้นม: <?php echo $result['num_milk'] ?></p5>
-                                                                    <p5>จำนวนวันให้ผลผลิต : <?php echo $result['num_date_history'] ?> วัน</p5>
-                                                                    <p5>ปริมาณน้ำนม : <?php echo $result['milk'] ?> กิโลกรัม</p5>
+                                                                    
+                                                                    <p5>หมายเลขแพะ : <?php echo $result['number'] ?></p5>
+                                                                    
+                                                                    <p5>ครั้งที่ของการให้นม : <?php echo $result['num_milk'] ?> </p5>
+                                                                    <p5>ปริมาณน้ำนม: <?php echo $result['tatal_milk'] ?> </p5>
+                                                                    <p5>จำนวนวันให้ผลผลิต : <?php echo $result['date'] ?> </p5>
+                                                                    <p5>หมายเหตุ : <?php echo $result['note'] ?> </p5>
 
                                                                 </div>
                                                             </div>
@@ -175,17 +177,19 @@ if ($result1["userlevel"] == 'A') {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href='form_edit_historyData.php?editID=<?php echo $result["id"]; ?>'>
-                                                    <button type="submit" class="btn btn-secondary btn-block">แก้ไขข้อมูล</button></a>&nbsp;&nbsp;
-                                                <a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='historyDatadb.php?CusID=<?php echo $result["id"]; ?>';}">
+                                                
+                                                <a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='historyDataPersondb.php?CusID=<?php echo $result["id"]; ?>';}">
                                                     <button type="submit" class="btn btn-danger ">ลบข้อมูล</button></a>
                                             </td>
 
-                                        </tr>
-                                        <?php $item++; ?>
-                                    <?php }
-                                    ?>
 
+
+
+
+                                        </tr>
+                                        <?php $item++ ?>
+
+                                    <?php } ?>
 
                                 </tbody>
                             </table>
@@ -193,7 +197,10 @@ if ($result1["userlevel"] == 'A') {
                     </div>
                 </div>
             </div>
+
         </div>
+
+
     </div>
 
 
@@ -208,8 +215,8 @@ if ($result1["userlevel"] == 'A') {
                 </h3>
 
             </div> -->
-    <!-- 
-<?php endif ?> -->
+
+    <!-- <?php endif ?> -->
 
 
 

@@ -41,7 +41,7 @@ $result = $conn->query($sql);
                     มาตรฐานฟาร์มแพะนม
                 </a>
             </div>
-            <p>
+            <p class="text-light">
                 Welcome Admin <strong><?php echo $_SESSION['username'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>
@@ -85,10 +85,10 @@ $result = $conn->query($sql);
                                 <tbody>
                                     <?php while ($row = $result->fetch_assoc()) : ?>
                                         <tr>
-                                            <td><?php echo $row['medical_supplies']; ?></td>
+                                            <td><?php echo $row['name_supplies']; ?></td>
 
 
-                                            <td><a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='admin_maternaldb.php?CusID=<?php echo $row["medical_supplies"]; ?>';}">
+                                            <td><a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='admin_maternaldb.php?CusID=<?php echo $row["name_supplies"]; ?>';}">
                                                     <button type="submit" class="btn btn-danger">ลบข้อมูล</button></a>
                                             </td>
 

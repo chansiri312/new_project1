@@ -48,7 +48,7 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                 </a>
             </div>
             <p class="text-light">
-                Welcome <strong><?php echo $result1['farm_name'] ?></strong>
+            ยินดีต้อนรับ <strong><?php echo $result1['farm_name'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>
             &nbsp;&nbsp;
@@ -121,7 +121,7 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                         <th scope="col">ลำดับที่</th>
                                         <th scope="col">หมายเลขประจำตัว</th>
                                         <th scope="col">วัน/เดือน/ปี ที่ผสมพันธุ์</th>
-                                        <th scope="col">พ่อพันธุ์ีที่ใช้ผสม</th>
+                                        <th scope="col">พ่อพันธุ์ที่ใช้ผสม</th>
                                         <th scope="col">อายุเมื่อผสมพันธุ์</th>
                                         <th scope="cpl">จัดการ</th>
 

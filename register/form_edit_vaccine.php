@@ -86,7 +86,7 @@ $row1 = mysqli_fetch_array($result);
                     <div class="col-md-6">
                         <label for="name_mediacal" class="form-label">ข้อมูลชนิด/ชื่อยา</label>
                         <select name="name_mediacal" class="form-select" value="<?php echo $row1['name_mediacal']; ?>">
-                            <option value=""> เลือกเวชภัณฑ์ </option>
+                            <option value=""> เลือกยาถ่ายพยาธิ </option>
 
                             <?php
 
@@ -112,7 +112,8 @@ $row1 = mysqli_fetch_array($result);
                         <label for="num_gost1" class="form-label">ข้อมูลจำนวนแพะ(ตัว)</label>
                         <input type="text" class="form-control" name="num_gost1" value="<?php echo $row1['num_gost1']; ?>">
                     </div>
-                </div><br />
+                </div>
+                <br />
 
 
                 <h3 align="center">การตรวจโรคบรูเซลโลซีล</h3>
@@ -145,8 +146,9 @@ $row1 = mysqli_fetch_array($result);
 
                 <div class="input-group">
                     <button type="submid" name="sub_vacc" class="btn btn-warning">แก้ไขข้อมูล</button>
-                    
+
                 </div>
+
 
             </form><br />
             <a href="data_vaccine.php"><button type="submid" class="btn btn-danger">ย้อนกลับ</button></a>

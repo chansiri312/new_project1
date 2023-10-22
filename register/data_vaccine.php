@@ -53,7 +53,7 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                 </a>
             </div>
             <p class="text-light">
-                Welcome <strong><?php echo $result1['farm_name'] ?></strong>
+            ยินดีต้อนรับ <strong><?php echo $result1['farm_name'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>
             &nbsp;&nbsp;
@@ -102,7 +102,7 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
 
                                     <form name="frmSearch" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
-                                        <th width="287">วันที่
+                                        <th width="287">ชื่อวัคซีน
                                             <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $strKeyword; ?>">
                                             <input type="submit" value="ค้นหา">
                                         </th>

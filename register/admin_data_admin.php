@@ -41,7 +41,7 @@ $result = $conn->query($sql);
                     มาตรฐานฟาร์มแพะนม
                 </a>
             </div>
-            <p>
+            <p class="text-light">
                 Welcome Admin <strong><?php echo $_SESSION['username'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>
@@ -76,9 +76,8 @@ $result = $conn->query($sql);
                                 <thead>
                                     <tr>
                                         
-                                        <th scope="col">user</th>
-                                        <th scope="col">เลขทะเบียนฟาร์ม</th>
-                                        <th scope="col">ชื่อเจ้าของฟาร์ม</th>
+                                        <th scope="col">ชื่อผู้ใช้งาน</th>
+                                        <th scope="col">ชื่อ</th>
             
                                         <th scope="col">จัดการ</th>
                                         
@@ -91,7 +90,7 @@ $result = $conn->query($sql);
                                             
 
                                             <td><?php echo $row['username']; ?></td>
-                                            <td><?php echo $row['number_farm']; ?></td>
+                                            
                                             <td><?php echo $row['name']; ?></td>
                                             
                                             <td><a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='admin_adddb.php?CusID=<?php echo $row["id"]; ?>';}">
@@ -99,8 +98,7 @@ $result = $conn->query($sql);
 												
 												&nbsp;&nbsp;
                                                     
-                                                <a href='index_admin.php?id=<?php echo $row['username']; ?>'><button type="submid" class="btn btn-success">ดูข้อมูล</button></a>
-                                                    
+                                                
                                             </td>
 
                                         </tr>

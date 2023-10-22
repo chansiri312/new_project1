@@ -23,6 +23,11 @@ $query1 = mysqli_query($conn, $sql1);
 $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
 
+
+$sql2 = "select * from user where userlevel ='M' ";
+$result2 = $conn->query($sql2);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +53,8 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                     มาตรฐานฟาร์มแพะนม
                 </a>
             </div>
-            <p>
-                Welcome <strong><?php echo $result1['farm_name']; ?></strong>
+            <p class="text-light">
+            Welcome Admin <strong><?php echo $_SESSION['username'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>
             &nbsp;&nbsp;
@@ -60,21 +65,21 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
     ini_set('display_errors', 1);
     error_reporting(~0);
 
-    //$strKeyword = null;
+    $strKeyword = null;
 
-    //if (isset($_POST["txtKeyword"])) {
-       // $strKeyword = $_POST["txtKeyword"];
+    if (isset($_POST["txtKeyword"])) {
+        $strKeyword = $_POST["txtKeyword"];
 
 
-       // $sql = "SELECT * FROM datamanagement WHERE number LIKE '%" . $strKeyword . "%' ";
+        $sql = "SELECT * FROM datamanagement WHERE number LIKE '%" . $strKeyword . "%' ";
 
-       // $query = mysqli_query($conn, $sql);
-    //} else {
+        $query = mysqli_query($conn, $sql);
+    } else
 
 
         $sql = "select * from datamanagement  where recorder_name = '" . $_GET['id'] . "'";
 
-        $query = mysqli_query($conn, $sql);
+    $query = mysqli_query($conn, $sql);
     //}
     ?>
 
@@ -95,16 +100,17 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
 
 
-                            
 
-                           <!-- <table width="573" border="0">
 
-                        
+                            <table width="573" border="0">
+                                <?php $row = $result2->fetch_assoc()  ?>
+
 
                                 <tr>
-                                    <th width="92"> <a href="form_dataManagement.php"><button type="submid" class="btn btn-success">เพิ่มข้อมูล</button></a></th>
-                                    <th width="116"><a href="admin_page.php"><button type="submid" class="btn btn-success">ย้อนกลับ</button>
+
+                                    <th width="116"><a href="index_admin.php?id=<?php echo $row['username']; ?>"><button type="submid" class="btn btn-success">ย้อนกลับ</button>
                                         </a></th>
+
 
 
 
@@ -117,7 +123,8 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                     </form>
                                 </tr>
 
-                            </table> -->
+
+                            </table>
                             <?php
 
                             ?>
@@ -146,7 +153,7 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
                                             <td><?php echo $result['birthday']; ?></td>
                                             <td><?php echo $result['gender']; ?></td>
-                                            <td><?php echo$result['breed']; ?></td>
+                                            <td><?php echo $result['breed']; ?></td>
 
 
                                             <td>
@@ -187,7 +194,7 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                                 </div>
 
 
-                                               
+
                                             </td>
 
 

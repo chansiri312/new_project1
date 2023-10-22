@@ -27,21 +27,21 @@ session_start();
             <form action="historyDataPersondb.php" method="post">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="num1">หมายเลขประจำตัว</label><br required>
-                        <input type="number" class="form-control" name="num1">
+                        <label for="num1">หมายเลขประจำตัว <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="num1" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="num_milk">ครั้งที่ของการให้นม</label><br required>
-                        <input type="number" class="form-control" name="num_milk">
+                        <label for="num_milk">ครั้งที่ของการให้นม </label>
+                        <input type="number" class="form-control" name="num_milk" >
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="recoder">ผู้บันทึก</label><br required>
-                        <input type="text" class="form-control" name="recoder">
+                        <label for="recoder">ผู้บันทึก <font color='red'>*</font></label>
+                        <input type="text" class="form-control" name="recoder" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="style">ลักษณะการเลี้ยง</label><br >
+                        <label for="style">ลักษณะการเลี้ยง</label>
                         <select name="style" class="form-select" >
                             <option value=""> แบบขังคอก </option>
                             <option value=""> แบบปล่อย </option>
@@ -50,25 +50,25 @@ session_start();
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="date">วัน/เดือน/ปี</label><br required>
-                        <input type="date" class="form-control" name="date">
+                        <label for="date">วัน/เดือน/ปี <font color='red'>*</font></label>
+                        <input type="date" class="form-control" name="date" required>
                     </div>
 
                     <div class="col-md-12">
-                        <label for="number" class="form-label">หมายเลขแพะ</label>
-                        <input type="number" class="form-control" name="number" />
+                        <label for="number" class="form-label">หมายเลขแพะ <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="number" required>
                     </div>
                 </div>
                 <h3 align="center">ปริมาณของน้ำนม(Kg)</h3>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="milk_morning" class="form-label">ปริมาณน้ำนมช่วงเช้า</label>
-                        <input type="number" class="form-control" name="milk_morning" />
+                        <label for="milk_morning" class="form-label">ปริมาณน้ำนมช่วงเช้า <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="milk_morning" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="milk_evening" class="form-label">ปริมาณน้ำนมช่วงเย็น</label>
-                        <input type="number" class="form-control" name="milk_evening" />
+                        <label for="milk_evening" class="form-label">ปริมาณน้ำนมช่วงเย็น <font color='red'>*</font></label>
+                        <input type="number" class="form-control" name="milk_evening" required>
                     </div>
                 </div>
 

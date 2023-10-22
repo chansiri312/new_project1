@@ -15,6 +15,16 @@ session_start();
         .mindphp {
             visibility: hidden;
         }
+       
+        form {
+            width: 30%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #b8c4de;
+            background: white;
+            border-radius: 0px 0px 10px 10px;
+        }
+    
     </style>
 
 
@@ -39,19 +49,19 @@ session_start();
             </div>
         <?php endif ?>
         <div class="input-group">
-            <label for="username">ชื่อผู้ใช้</label>
+            <label for="username">ชื่อผู้ใช้ <font color='red'>*</font></label>
             <input type="text" name="username">
         </div>
         <div class="input-group">
-            <label for="email">Email</label>
+            <label for="email">Email<font color='red'>*</font></label>
             <input type="email" name="email">
         </div>
         <div class="input-group">
-            <label for="password_1">รหัสผ่าน</label>
+            <label for="password_1">รหัสผ่าน<font color='red'>*</font></label>
             <input type="password" name="password_1">
         </div>
         <div class="input-group">
-            <label for="password_2">ยืนยันรหัสผ่าน</label>
+            <label for="password_2">ยืนยันรหัสผ่าน<font color='red'>*</font></label>
             <input type="password" name="password_2">
         </div>
         <div class="input-group">

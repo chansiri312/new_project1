@@ -12,7 +12,8 @@ if (isset($_GET['login'])) {
     header('localhost:login.php');
 }
 
-$sql = "select * from receivingchemicals  where recorder_name = '" . $_SESSION['username'] . "'";
+$sql = "select * from vaccine  where recorder_name = '" . $_SESSION['username'] . "'";
+
 
 
 $result = $conn->query($sql);
@@ -23,8 +24,8 @@ $sql1 = "select * from user  where username = '" . $_SESSION['username'] . "'";
 $query1 = mysqli_query($conn, $sql1);
 $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 
-
-
+$sql2 = "select * from user where userlevel ='M' ";
+$result2 = $conn->query($sql2);
 
 
 ?>
@@ -44,16 +45,16 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
 </head>
 
 <body>
-    <div class="dataMheader">
+<div class="dataMheader">
         <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #006E4D;">
             <div class="container-fluid">
-                <a class=" text-light navbar-brand" href="index.php">
+                <a class="text-light  navbar-brand" href="index.php">
                     <img src="362140860_841452967338701_8340761728124446768_n.png" alt="" width="50px" height="50px" class="d-inline-block align-text-">
                     มาตรฐานฟาร์มแพะนม
                 </a>
             </div>
             <p class="text-light">
-            ยินดีต้อนรับ <strong><?php echo $result1['farm_name'] ?></strong>
+            Welcome Admin <strong><?php echo $_SESSION['username'] ?></strong>
             </p>
             <p><strong><a href="logoutdb.php" style="color: brown">Logout</a></strong></p>
             &nbsp;&nbsp;
@@ -69,19 +70,20 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
         $strKeyword = $_POST["txtKeyword"];
 
 
-        $sql = "SELECT * FROM receivingchemicals WHERE number LIKE '%" . $strKeyword . "%' ";
+        $sql = "SELECT * FROM vaccine WHERE number LIKE '%" . $strKeyword . "%' ";
 
         $query = mysqli_query($conn, $sql);
-    } else {
+    } else
 
 
-        $sql = "select * from receivingchemicals  where recorder_name = '" . $_SESSION['username'] . "'";
+        $sql = "select * from vaccine  where recorder_name = '" . $_GET['id'] . "'";
 
-        $query = mysqli_query($conn, $sql);
-    }
+    $query = mysqli_query($conn, $sql);
+    //}
     ?>
 
-    <div class="homecontent">
+
+<div class="homecontent">
         <div class="row">
             <br />
             <div class="col">
@@ -90,69 +92,65 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                         <br />
                         <div class="card ">
                             <i class="fa fa-align-center" aria-hidden="true">
-                                <h1>ข้อมูลการรับ-จ่ายเวชภัณฑ์และสารเคมี</h1>
+                                <h1>ข้อมูลการใช้วัคซีน-การถ่ายพยาธิ(ทั้งฝูง)</h1>
                             </i>
                             <br />
-                            <table width="700" border="0">
+                            <table width="573" border="0">
+                                <?php $row = $result2->fetch_assoc()  ?>
+
+
                                 <tr>
-                                    <th width="116"> <a href="form_receivingChemicals.php"><button type="submid" class="btn btn-success">เพิ่มข้อมูล</button></a></th>
-                                    <th width="116"><a href="index.php"><button type="submid" class="btn btn-success">ย้อนกลับ</button>
+
+                                    <th width="116"><a href="index_admin.php?id=<?php echo $row['username']; ?>"><button type="submid" class="btn btn-success">ย้อนกลับ</button>
                                         </a></th>
 
 
+
+
+
                                     <form name="frmSearch" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
-                                        <th width="330">ชื่อเวชภัณฑ์
+                                        <th width="343">ชื่อวัคซีน
                                             <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $strKeyword; ?>">
                                             <input type="submit" value="ค้นหา">
                                         </th>
                                     </form>
-                                    <th align="rigth">
-                                        <font face="cordia new" size="+2">
-                                            <a href="pdf_receivingchemicals.php?date=<?php echo $strKeyword; ?>" target="blank">
-                                                <img src="images/pdf-pic.png" width="36" height="37" /></a>
-                                        </font>
-                                    </th>
                                 </tr>
 
+
                             </table>
-                            <br />
+                            
+
+                            <?php
+
+                            ?>
+                            <br /><br />
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col">ลำดับที่</th>
-                                        <th scope="col">วันที่ซื้อ</th>
-                                        <th scope="col">ชื่อเวชภัณฑ์</th>
-                                        <th scope="col">ชื่อสารเคมี</th>
-                                        <th scope="col">จำนวนที่ซื้อ</th>
-                                        <th scope="col">จำนวนที่ใช้</th>
-                                        <th scope="col">คงเหลือ </th>
-                                        <!-- <th scope="col">ชื่อสารเคมี</th>
-                                        <th scope="col">จำนวน</th>
-                                        <th scope="col">คงเหลือ สารเคมี</th> -->
+                                        <th scope="col">วันที่</th>
+                                        <th scope="col">ชื่อวัคซีน</th>
+                                        <th scope="col">จำนวนแพะ</th>
+                                        <th scope="col">ชื่อยาถ่ายพยาธิ</th>
+                                        <th scope="col">จำนวนแพะ</th>
+
                                         <th scope="cpl">จัดการ</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $item = 1;
-                                    while ($row = $result->fetch_assoc()) : 
-                                        // $sql="buy_medical" -"use_medical" ;
-                                        // $result=mysqli_query($conn ,$sql);
-                                        // echo $row[$sql];?>
-                                        
+                                     while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
                                         <tr>
                                             <td><?php echo $item ?></td>
                                             <td><?php echo $row['date']; ?></td>
 
-                                            <td><?php echo $row['name_medical']; ?></td>
-                                            <td><?php echo $row['name_chemical']; ?></td>
-                                            <td><?php echo $row['buy_medical']; ?></td>
-                                            
-                                            <td><?php echo $row['use_medical']; ?></td>
-                                            <td><?php echo $row['total_medical']; ?></td>
-                                            
-                                            
+                                            <td><?php echo $row['name_vaccine']; ?></td>
 
+                                            <td><?php echo $row['num_goat']; ?></td>
+                                            <td><?php echo $row['name_mediacal']; ?></td>
+                                            <td><?php echo $row['num_gost1']; ?></td>
 
 
 
@@ -167,23 +165,27 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการรับ-จ่ายเวชภัณฑ์และสารเคมี</h5>
+                                                                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการใช้วัคซีน-การถ่ายพยาธิ(ทั้งฝูง)</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="row">
                                                                     <p5>วัน/เดือน/ปี : <?php echo $row['date'] ?></p5>
-                                                                    <p5>ชื่อเวชภัณฑ์ : <?php echo $row['name_medical'] ?></p5>
-                                                                    <p5>จำนวนที่ซื้อ : <?php echo $row['buy_medical'] ?> </p5>
-                                                                    <p5>จำนวนที่ใช้ : <?php echo $row['use_medical'] ?> </p5>
-                                                        
-                                                                    <p5>คงเหลือ : <?php echo $row['total_medical'] ?> </p5>
-                                                                    <p5>ชื่อสารเคมี : <?php echo $row['name_chemical'] ?> </p5>
+                                                                    <p5>คอก/ฝูง : <?php echo $row['stall'] ?></p5>
+                                                                    <h5>การใช้วัคซีน </h5>
+                                                                    <p5>ชื่อวัคซีน : <?php echo $row['name_vaccine'] ?> </p5>
+                                                                    <p5>จำนวนแพะ : <?php echo $row['num_goat'] ?> ตัว</p5><br />
 
-                                                                    <p5>จำนวนที่ซื้อ : <?php echo $row['buy_chemical'] ?> </p5>
-                                                                    <p5>จำนวนที่ใช้ : <?php echo $row['use_chemical'] ?> </p5>
-                                                                    <p5>คงเหลือ : <?php echo $row['total_chemical'] ?> </p5>
-                                                                    <p5>หมายเหตุ : <?php echo $row['note'] ?> </p5>
+                                                                    <h5>การถ่ายพยาธิ </h5>
+                                                                    <p5>ชื่อยา : <?php echo $row['name_mediacal'] ?> </p5>
+                                                                    <p5>จำนวนแพะ : <?php echo $row['num_gost1'] ?> ตัว</p5><br />
+                                                                    <p5>การตรวจโรคบรูเซลโลซีส : <?php echo $row['examination'] ?> </p5>
+                                                                    <p5>ผู้ปฏิบัติงาน : <?php echo $row['operator'] ?> </p5>
+                                                                    <p5>ผู้ควบคุม : <?php echo $row['controller'] ?> </p5>
+
+
+
+
 
                                                                 </div>
                                                             </div>
@@ -195,16 +197,13 @@ $result1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href='form_edit_receivingChemicals.php?editID=<?php echo $row["id"]; ?>'>
-                                                    <button type="submit" class="btn btn-secondary btn-block">แก้ไขข้อมูล</button></a>&nbsp;&nbsp;
-                                                <a href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='receivingChemicalsdb.php?CusID=<?php echo $row["id"]; ?>';}">
-                                                    <button type="submit" class="btn btn-danger ">ลบข้อมูล</button></a>
+                                                
                                             </td>
 
                                         </tr>
-                                        <?php $item++; ?>
+                                        <?php $item++ ?>
 
-                                    <?php endwhile ?>
+                                    <?php } ?>
 
                                 </tbody>
                             </table>
